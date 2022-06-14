@@ -20,11 +20,11 @@
     <header id="site-header" class="fixed-top">
         <div class="container">
             <nav class="navbar navbar-expand-lg stroke px-0">
-                <h1> <a class="navbar-brand" href="adminLogin.html">
+                <h1> <a class="navbar-brand" href="adminLogin.php">
                   STEMFern
               </a></h1>
                 <!-- if logo is image enable this   
-  <a class="navbar-brand" href="#index.html">
+  <a class="navbar-brand" href="#index.php">
       <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
   </a> -->
                 <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,16 +35,16 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item @@home__active">
-                            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item @@about__active">
-                            <a class="nav-link" href="about.html">About</a>
+                            <a class="nav-link" href="about.php">About</a>
                         </li>
                         <li class="nav-item @@services__active">
-                            <a class="nav-link" href="services.html">Services</a>
+                            <a class="nav-link" href="services.php">Services</a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="contact.html">Contact</a>
+                            <a class="nav-link" href="contact.php">Contact</a>
                         </li>
                         <!--/search-right-->
                         <div class="search-right">
@@ -52,7 +52,7 @@
                             <!-- search popup -->
                             <div id="search" class="pop-overlay">
                                 <div class="popup">
-                                    <form action="error.html" method="GET" class="search-box">
+                                    <form action="error.php" method="GET" class="search-box">
                                         <input type="search" placeholder="Enter Keyword" name="search" required="required" autofocus="">
                                         <button type="submit" class="btn"><span class="fa fa-search"
                                           aria-hidden="true"></span></button>
@@ -89,8 +89,8 @@
         <section class="w3l-breadcrumb">
             <div class="container">
                 <ul class="breadcrumbs-custom-path">
-                    <li><a href="index.html">Home</a></li>
-                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span> Admin Login</li>
+                    <li><a href="index.php">Home</a></li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span> Admin Dashboard</li>
                 </ul>
             </div>
         </section>
@@ -109,41 +109,22 @@
     <section class="w3l-contact-1 py-5" id="contact">
         <div class="contacts-9 py-lg-5 py-md-4">
             <div class="container">
-                <div class="d-grid contact-view">
+                <div class="d-grid">
                     <div class="map-content-9">
-                        <h5 class="mb-sm-4 mb-3">Admin Login</h5>
-                        <form action="adminDashboard.html" method="post">
-                            <div class="twice">
-                                <!-- <input type="text" class="form-control" name="w3lName" id="w3lName" placeholder="Name" required=""> -->
-                                <input type="email" class="form-control" name="userid" id="w3lSender" placeholder="Email" required="">
-                            </div>
-                            <div class="twice">
-                                <input type="password" class="form-control" name="pswrd" id="w3lSubject" placeholder="Password" required="">
-                            </div>
+                        <h5 class="mb-sm-4 mb-3">Admin Dashboard</h5>
+                        <div class="text-right">
+                        <a href="#">
+                            <button type="submit" class="btn btn-primary btn-style mt-4">Change Facebook and Linkdin Links</button>
+                        </a>
+                            <a href="addFeature.php">
+                               <button type="submit" class="btn btn-primary btn-style mt-4">Add Website Features</button>
+                        </a>
+                          <a href="viewContacts.php"> 
+                            <button type="submit" class="btn btn-primary btn-style mt-4">View Contact Quries</button>
+                        </a>
+                        </div>
 
-                            <div class="text-right">
-                                <!-- <button type="submit" onclick="check(this.form)" class="btn btn-primary btn-style mt-4">Login Now</button> -->
-                                <button type="submit" onclick="check(this.form)" class="btn btn-primary btn-style mt-4">Login Now</button>
-                            </div>
-                        </form>
-                        <script language="javascript">
-                            function check(form) {
-                                /*function to check userid & password*/
-                                /*the following code checkes whether the entered userid and password are matching*/
-                                if (
-                                    form.userid.value == "stem@gmail.com" &&
-                                    form.pswrd.value == "admin"
-                                ) {
-                                    window.open(
-                                        "adminDashboard.html"
-                                    ); /*opens the target page while Id & password matches*/
-                                } else {
-                                    alert(
-                                        "Error Password or Username"
-                                    ); /*displays error message*/
-                                }
-                            }
-                        </script>
+
                     </div>
                 </div>
             </div>

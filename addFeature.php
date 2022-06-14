@@ -1,7 +1,38 @@
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
--->
+<?php
+	try{
+		$db = new PDO("mysql:host=localhost;dbname=stemferndb;port=3306","root","");
+		$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+	}catch(Exception $e){
+		echo "Cannot connect to database ".$e->getMessage();
+		exit;
+	}
+			$result="";
+			$cunt=0; 
+			if(isset($_POST["btn"])){
+                $FeatureName=$_POST["feature_name"];
+                $shortDesc=$_POST["short_descrip"];
+                $LongDesc=$_POST["long_descrip"];
+                $HousePic=$_FILES["HousePic"]["name"];
+                $tmpLoc=$_FILES["HousePic"]["tmp_name"];
+
+               // $ary=explode(".",$HousePic);
+               // $picExtension=$ary[1];
+                $housePicName=time().$HousePic;
+                
+                try{
+                    $qry=$db->query("insert into features(feature_name,short_descrip,long_descrip,image) values('".$FeatureName."','".$shortDesc."','".$LongDesc."','".$housePicName."')");
+                    move_uploaded_file($tmpLoc,'features/'.$housePicName);
+                    $result=" Success ";
+                }
+                catch(Exception $e){
+                    echo "Not able to check for the user ".$e->getMessage();
+                    exit;
+                }
+
+            }
+			
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -24,11 +55,11 @@ Author URL: http://w3layouts.com
     <header id="site-header" class="fixed-top">
         <div class="container">
             <nav class="navbar navbar-expand-lg stroke px-0">
-                <h1> <a class="navbar-brand" href="adminLogin.html">
+                <h1> <a class="navbar-brand" href="adminLogin.php">
                   STEMFern
               </a></h1>
                 <!-- if logo is image enable this   
-  <a class="navbar-brand" href="#index.html">
+  <a class="navbar-brand" href="#index.php">
       <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
   </a> -->
                 <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,16 +70,16 @@ Author URL: http://w3layouts.com
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item @@home__active">
-                            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item @@about__active">
-                            <a class="nav-link" href="about.html">About</a>
+                            <a class="nav-link" href="about.php">About</a>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="services.html">Services</a>
+                        <li class="nav-item @@services__active">
+                            <a class="nav-link" href="services.php">Services</a>
                         </li>
-                        <li class="nav-item @@contact__active">
-                            <a class="nav-link" href="contact.html">Contact</a>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="contact.php">Contact</a>
                         </li>
                         <!--/search-right-->
                         <div class="search-right">
@@ -56,8 +87,7 @@ Author URL: http://w3layouts.com
                             <!-- search popup -->
                             <div id="search" class="pop-overlay">
                                 <div class="popup">
-
-                                    <form action="error.html" method="GET" class="search-box">
+                                    <form action="error.php" method="GET" class="search-box">
                                         <input type="search" placeholder="Enter Keyword" name="search" required="required" autofocus="">
                                         <button type="submit" class="btn"><span class="fa fa-search"
                                           aria-hidden="true"></span></button>
@@ -94,8 +124,8 @@ Author URL: http://w3layouts.com
         <section class="w3l-breadcrumb">
             <div class="container">
                 <ul class="breadcrumbs-custom-path">
-                    <li><a href="index.html">Home</a></li>
-                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span> Services</li>
+                <li><a href="adminDashboard.php">Admin Dashboard</a></li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span> Add New Feature</li>
                 </ul>
             </div>
         </section>
@@ -109,91 +139,70 @@ Author URL: http://w3layouts.com
         </div>
     </div>
     <!-- banner bottom shape -->
-    <section class="w3l-servicesblock py-5" id="">
-        <div class="container py-lg-5 py-md-3">
-            <div class="row">
-                <div class="col-lg-6 about-right-faq align-self">
-                    <span class="title-small mb-2">Best for you</span>
-                    <h3 class="title-big mx-0"> Boosts your Website Traffic! Best Solutions for Clients.</h3>
-                    <p class="mt-lg-4 mt-3 mb-lg-5 mb-4">Lorem ipsum viverra feugiat. Pellen tesque libero ut justo, ultrices in ligula. Semper at tempufddfel. Lorem ipsum dolor sit amet consectetur adipisicing elit. Non quae, fugiat.</p>
-                    <div class="two-grids mt-md-0 mt-md-5 mt-4">
-                        <div class="grids_info">
-                            <h4>Media Promotion</h4>
-                            <p class="">Pellen tesque libero ut justo, ultrices in ligula.</p>
+    <!-- contact block -->
+    <!-- contact1 -->
+    <section class="w3l-contact-1 py-5" id="contact">
+        <div class="contacts-9 py-lg-5 py-md-4">
+            <div class="container">
+                <div class="d-grid contact-view">
+                <!-- <div class="cont-details">
+                        <h4 class="title-small">Get in touch</h4>
+                        <h3 class="title-big mb-4">Contact Us</h3>
+                        <p class="mb-sm-5 mb-4"><br> We guarantee that you’ll be able to have any reply within 24 hours.</p>
+                        <div class="cont-top">
+                            <div class="cont-left text-center">
+                                <span class="fa fa-phone text-primary"></span>
+                            </div>
+                            <div class="cont-right">
+                                <h6>Phone number</h6>
+                                <p><a href="tel:+(21) 255 999 8888">+(1) 289 470 0478</a></p>
+                            </div>
                         </div>
-                        <div class="grids_info">
-                            <h4>Infographics Content</h4>
-                            <p class="">Pellen tesque libero ut justo, ultrices in ligula.</p>
+                        <div class="cont-top margin-up">
+                            <div class="cont-left text-center">
+                                <span class="fa fa-envelope-o text-primary"></span>
+                            </div>
+                            <div class="cont-right">
+                                <h6>Send Email</h6>
+                                <p><a href="mailto:support@allianztech.ca" class="mail">support@allianztech.ca</a></p>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-6 left-wthree-img mt-lg-0 mt-sm-5 mt-4">
-                    <img src="assets/images/services.jpg" alt="" class="img-fluid radius-image">
-                </div>
-                <div class="col-lg-3 col-6  left-wthree-img mt-lg-0 mt-sm-5 mt-4">
-                    <img src="assets/images/services1.jpg" alt="" class="img-fluid radius-image">
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- /bottom-grids-->
-    <section class="w3l-bottom-grids-6 py-5" id="services">
-        <div class="container py-lg-5 py-md-4">
-            <h6 class="title-small text-center">Our Services</h6>
-            <h3 class="title-big mb-md-5 mb-4 text-center">Let's check our Services</h3>
-            <div class="grids-area-hny main-cont-wthree-fea row">
-                <div class="col-lg-4 col-md-6 grids-feature">
-                    <div class="area-box">
-                        <span class="fa fa-retweet mt-0"></span>
-                        <h4><a href="#feature" class="title-head">Social Media Strategy</a></h4>
-                        <p class="my-3">Vivamus a ligula quam tesque et libero ut justo, ultrices in. Ut eu leo non. Duis sed et dolor amet.</p>
-                        <a href="#url" class="more">Read More </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 grids-feature mt-md-0 mt-4">
-                    <div class="area-box">
-                        <span class="fa fa-clock-o mt-0"></span>
-                        <h4><a href="#feature" class="title-head">Real-time and Data</a></h4>
-                        <p class="my-3">Vivamus a ligula quam tesque et libero ut justo, ultrices in. Ut eu leo non. Duis sed dolor et amet.</p>
-                        <a href="#url" class="more">Read More </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 grids-feature mt-lg-0 mt-4">
-                    <div class="area-box">
-                        <span class="fa fa-line-chart mt-0"></span>
-                        <h4><a href="#feature" class="title-head">Reporting and Analysis</a></h4>
-                        <p class="my-3">Vivamus a ligula quam tesque et libero ut justo, ultrices in. Ut eu leo non. Duis sed dolor et amet.</p>
-                        <a href="#url" class="more">Read More </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 grids-feature mt-lg-5 mt-4">
-                    <div class="area-box">
-                        <span class="fa fa-trash-o mt-0"></span>
-                        <h4><a href="#feature" class="title-head">Penalty Recovery</a></h4>
-                        <p class="my-3">Vivamus a ligula quam tesque et libero ut justo, ultrices in. Ut eu leo non. Duis sed et dolor amet.</p>
-                        <a href="#url" class="more">Read More </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 grids-feature mt-lg-5 mt-4">
-                    <div class="area-box">
-                        <span class="fa fa-video-camera mt-0"></span>
-                        <h4><a href="#feature" class="title-head">Media Promotion</a></h4>
-                        <p class="my-3">Vivamus a ligula quam tesque et libero ut justo, ultrices in. Ut eu leo non. Duis sed dolor et amet.</p>
-                        <a href="#url" class="more">Read More </a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 grids-feature mt-lg-5 mt-4">
-                    <div class="area-box">
-                        <span class="fa fa-search-plus mt-0"></span>
-                        <h4><a href="#feature" class="title-head">Search Optimization</a></h4>
-                        <p class="my-3">Vivamus a ligula quam tesque et libero ut justo, ultrices in. Ut eu leo non. Duis sed dolor et amet.</p>
-                        <a href="#url" class="more">Read More </a>
+                        <div class="cont-top margin-up">
+                            <div class="cont-left text-center">
+                                <span class="fa fa-map-marker text-primary"></span>
+                            </div>
+                            <div class="cont-right">
+                                <h6>Company Address</h6>
+                                <p class="pr-lg-5">273, Manchester Drive, Newmarket, Ontario, Canada.</p>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="map-content-9">
+                        <h5 class="mb-sm-4 mb-3">Add New Feature to Website</h5>
+                       
+                        <form action="addFeature.php" method="post" enctype="multipart/form-data">
+                            <div class="twice">
+                                <input type="text" class="form-control" name="feature_name" id="w3lSender" placeholder="Feature Name" required="">
+                            </div>
+                            <div class="twice">
+                                <input type="text" class="form-control" name="short_descrip" id="w3lSender" placeholder="Short Descrip" required="">
+                            </div>
+                            <div class="twice">
+                                <input type="text" class="form-control" name="long_descrip" id="w3lSender" placeholder="Long Descrip" required="">
+                            </div>
+                            <div class="twice">
+                                <input type="file" class="form-control" name="HousePic" id="w3lSender"  required="">
+                            </div>
+                            <div class="text-right">
+                                <button type="submit" name="btn" class="btn btn-primary btn-style mt-4">ADD NEW</button>
+                            </div>
+                        </form>
+                        <h1  style="font-size:20px;margin:10px;text-align:center"><?php echo $result ;?></h1>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- //bottom-grids-->
 
 
 
@@ -201,7 +210,7 @@ Author URL: http://w3layouts.com
     <section class="w3l-copyright">
         <div class="container">
             <div class="row bottom-copies">
-                <p class="col-lg-8 copy-footer-29">© 2022 STEMFern. All rights reserved. </p>
+                <p class="col-lg-8 copy-footer-29">© 2022 STEMFern. All rights reserved.</p>
 
                 <div class="col-lg-4 main-social-footer-29">
                     <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>

@@ -1,3 +1,7 @@
+<?php
+
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -17,10 +21,10 @@
     <header id="site-header" class="fixed-top">
         <div class="container">
             <nav class="navbar navbar-expand-lg stroke px-0">
-                <a class="navbar-brand" href="#index.html">
+                <a class="navbar-brand" href="#index.php">
                     <img src="./assets/images/logo-new.png" alt="Stem Fern " title="Stem Fern" style="height:35px;" />
                 </a>
-                <h1> <a class="navbar-brand" href="adminLogin.html">
+                <h1> <a class="navbar-brand" href="adminLogin.php">
                   STEMFern
               </a></h1>
 
@@ -32,16 +36,16 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item @@about__active">
-                            <a class="nav-link" href="about.html">About</a>
+                            <a class="nav-link" href="about.php">About</a>
                         </li>
                         <li class="nav-item @@services__active">
-                            <a class="nav-link" href="services.html">Services</a>
+                            <a class="nav-link" href="services.php">Services</a>
                         </li>
                         <li class="nav-item @@contact__active">
-                            <a class="nav-link" href="contact.html">Contact</a>
+                            <a class="nav-link" href="contact.php">Contact</a>
                         </li>
                         <!--/search-right-->
                         <div class="search-right">
@@ -50,7 +54,7 @@
                             <div id="search" class="pop-overlay">
                                 <div class="popup">
 
-                                    <form action="error.html" method="GET" class="search-box">
+                                    <form action="error.php" method="GET" class="search-box">
                                         <input type="search" placeholder="Enter Keyword" name="search" required="required" autofocus="">
                                         <button type="submit" class="btn"><span class="fa fa-search"
                                           aria-hidden="true"></span></button>
@@ -91,7 +95,7 @@
                     <h3 class="mb-md-4 mb-3">Powerful Solution for your Startup Business.</h3>
                     <p>Our multidisciplinary teams provide expert advice and solutions from design to deployment. Creativity is Our Success key. Solving Complex Problems using Simple Solutions.</p>
                     <div class="mt-md-5 mt-4">
-                        <a class="btn btn-primary btn-style" href="about.html"> Get Started </a>
+                        <a class="btn btn-primary btn-style" href="about.php"> Get Started </a>
                         <a href="#small-dialog" class="popup-with-zoom-anim play-view text-center pl-3">
                             <span class="video-play-icon">
                             <span class="fa fa-play"></span>
@@ -106,9 +110,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-5 offset-lg-1 col-md-8 col-sm-10 mt-lg-0 mt-5">
+                <!-- <div class="col-lg-5 offset-lg-1 col-md-8 col-sm-10 mt-lg-0 mt-5">
                     <div class="banner-form-w3">
-                        <!-- banner form -->
+                       
                         <form action="#" method="post">
                             <h5 class="mb-4">Register now</h5>
                             <div class="form-style-w3ls">
@@ -124,9 +128,9 @@
                                 <button class="btn btn-style btn-primary w-100"> Register</button>
                             </div>
                         </form>
-                        <!-- //banner form -->
+                       
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -169,7 +173,7 @@
         </div>
     </section> -->
     <!-- /bottom-grids-->
-    <section class="w3l-bottom-grids-6 py-5" id="features">
+    <!-- <section class="w3l-bottom-grids-6 py-5" id="features">
         <div class="container py-lg-5 py-md-4">
             <div class="text-center">
                 <span class="title-small">Our Features</span>
@@ -181,7 +185,7 @@
                         <h4><a href="#feature" class="title-head">Education Technology </a></h4>
                         <span class="fa fa-line-chart"></span>
                         <p>STEMFern Co. Ltd. team has a great in-depth experience in computing, AI, robotics and education. We are passionate about creating technologies that enables everyone, particularly educators and kids to experience STEM subjects.</p>
-                        <button><a href="educationTec.html"> Read More </a></button>
+                        <button><a href="educationTec.php"> Read More </a></button>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 grids-feature mt-sm-0 mt-4">
@@ -190,7 +194,7 @@
                         <span class="fa fa-object-group"></span>
                         <p>Dedicated web hosting services with high quality Managed VPS hosting packages. All of STEMFern VPS hosting packages are cost-efficient solutions for both professional and beginner businesses. They are Linux based with DirectAdmin
                             panel. STEMFern modern servers have high speed SSD drives, dedicated resources and unlimited bandwidth.</p>
-                        <button><a href="webdevelop.html">Read More</a> </button>
+                        <button><a href="webdevelop.php">Read More</a> </button>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 grids-feature mt-lg-0 mt-4">
@@ -198,13 +202,13 @@
                         <h4><a href="#feature" class="title-head">Electronic Boards development</a></h4>
                         <span class="fa fa-line-chart"></span>
                         <p>STEMFern service ranges from consultation to finding solution, feasibility study, design / redesign, debugging, and reverse-engineering of Electronic Boards.</p>
-                        <button><a href="electronicBoard.html">Read More </button>
+                        <button><a href="electronicBoard.php">Read More </button>
                     </div>
                 </div>
 
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- //bottom-grids-->
     <!-- home page about section -->
     <section class="w3l-index3" id="about">
@@ -307,7 +311,7 @@
                 <h3 class="title-big">We Are Creative Dreamers and Innovators</h3>
                 <p>We focus on the needs of small to middle market businesses to improve and grow their return. Start working with us that can provide everything you need.</p>
                 <a href="#started" class="btn btn-style btn-white mt-sm-5 mt-4 mr-2">Get started</a>
-                <a href="contact.html" class="btn btn-style btn-primary mt-sm-5 mt-4">Contact Us</a>
+                <a href="contact.php" class="btn btn-style btn-primary mt-sm-5 mt-4">Contact Us</a>
             </div>
         </div>
     </div>

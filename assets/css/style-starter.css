@@ -1,17 +1,5 @@
 @charset "UTF-8";
 
-/*--
-Author: W3layouts
-Author URL: http://w3layouts.com
---*/
-
-
-/*!
- * Bootstrap v4.4.1 (https://getbootstrap.com/)
- * Copyright 2011-2019 The Bootstrap Authors
- * Copyright 2011-2019 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
 
 :root {
     --blue: #007bff;
@@ -1683,7 +1671,7 @@ pre code {
 .table {
     width: 100%;
     margin-bottom: 1rem;
-    color: #212529;
+    color: #fff;
 }
 
 .table th,
@@ -16592,4 +16580,8 @@ label.price-label {
 .custm-index a {
     color: #fff;
     text-decoration: none;
+}
+
+.custm-box {
+height: 170px !important;
 }

@@ -1,3 +1,22 @@
+<?php 
+ 	try{
+		$db = new PDO("mysql:host=localhost;dbname=stemferndb;port=3306","root","");
+		$db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+	}catch(Exception $e){
+		echo "Cannot connect to database ".$e->getMessage();
+		exit;
+	}
+
+    if(isset($_GET["feature_id"])){
+		$featureId=$_GET["feature_id"];
+	}
+    try{
+		$featureData = $db->query("select * from  features where id=".$featureId)->fetchAll();	
+	}catch(Exception $e){
+		echo "Not able to get Data ".$e->getMessage(); exit;
+	}
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -20,11 +39,11 @@
     <header id="site-header" class="fixed-top">
         <div class="container">
             <nav class="navbar navbar-expand-lg stroke px-0">
-                <h1> <a class="navbar-brand" href="adminLogin.html">
+                <h1> <a class="navbar-brand" href="adminLogin.php">
                   STEMFern
               </a></h1>
                 <!-- if logo is image enable this   
-  <a class="navbar-brand" href="#index.html">
+  <a class="navbar-brand" href="#index.php">
       <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
   </a> -->
                 <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,16 +54,16 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item @@home__active">
-                            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item @@about__active">
-                            <a class="nav-link" href="about.html">About</a>
+                            <a class="nav-link" href="about.php">About</a>
                         </li>
                         <li class="nav-item @@services__active">
-                            <a class="nav-link" href="services.html">Services</a>
+                            <a class="nav-link" href="services.php">Services</a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="contact.html">Contact</a>
+                            <a class="nav-link" href="contact.php">Contact</a>
                         </li>
                         <!--/search-right-->
                         <div class="search-right">
@@ -53,7 +72,7 @@
                             <div id="search" class="pop-overlay">
                                 <div class="popup">
 
-                                    <form action="error.html" method="GET" class="search-box">
+                                    <form action="error.php" method="GET" class="search-box">
                                         <input type="search" placeholder="Enter Keyword" name="search" required="required" autofocus="">
                                         <button type="submit" class="btn"><span class="fa fa-search"
                                           aria-hidden="true"></span></button>
@@ -90,8 +109,8 @@
         <section class="w3l-breadcrumb">
             <div class="container">
                 <ul class="breadcrumbs-custom-path">
-                    <li><a href="index.html">Home</a></li>
-                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span> Web & Mobile application development</li>
+                    <li><a href="index.php">Home</a></li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span> Feature Detail</li>
                 </ul>
             </div>
         </section>
@@ -109,21 +128,27 @@
     <section class="w3l-index3" id="about">
         <div class="midd-w3 py-5">
             <div class="container py-lg-5 py-md-3">
+            <?php
+					
+					foreach($featureData as $feature){
+						echo '
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="position-relative">
-                            <img src="assets/images/educationtec.jpg" alt="" class="radius-image-full img-fluid">
+                            <img src="features/'.$feature["image"].'" alt="" class="radius-image-full img-fluid">
                         </div>
                     </div>
                     <div class="col-lg-6 mt-lg-0 mt-md-5 mt-4 align-self">
-                        <h3 class="title-big mx-0">Web & Mobile application development and Hosting </h3>
-                        <p class="mt-md-4 mt-3">STEM Fern Ltd. Co. offers high-quality dedicated web hosting services with good quality management VPS hosting packages. They also offer cost-efficient solutions and VPS Hosting packages for beginners and professional businesses.
-                            Their modern server has high-speed SSD devices, unlimited bandwidth, and resources. </p>
-                        <p class="mt-3">When we click on the read more button it will redirect users to their server maintenance service description. They named the server “Easiest Server”. On this page, they have given their pricing details under categories, • Standard
-                            • Business • Business Pro • Ultimate. .
+                        <h3 class="title-big mx-0">'.$feature["feature_name"].' </h3>
+                        <p class="mt-md-4 mt-3">'.$feature["short_descrip"].'</p>
+                        <p class="mt-3">'.$feature["long_descrip"].'
                         </p>
                     </div>
                 </div>
+                ';
+            }
+        ?>
+    
             </div>
         </div>
     </section>

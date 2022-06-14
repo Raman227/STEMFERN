@@ -1,3 +1,32 @@
+<?php
+try{
+    $db = new PDO("mysql:host=localhost;dbname=stemferndb;port=3306","root","");
+    $db->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+}catch(Exception $e){
+    echo "Cannot connect to database ".$e->getMessage();
+    exit;
+}
+
+        $result="";
+        $cunt=0; 
+        if(isset($_POST["btn"])){
+            $cName=$_POST["cName"];
+            $cEmail=$_POST["cEmail"];
+            $cSubject=$_POST["cSubject"];
+            $cMessage=$_POST["cMessage"];
+   
+            try{
+                $qry=$db->query("insert into contact_form(name,email,subject,message) values('".$cName."','".$cEmail."','".$cSubject."','".$cMessage."')");
+                $result=" Success ";
+            }
+            catch(Exception $e){
+                echo "Not able to check for the user ".$e->getMessage();
+                exit;
+            }
+
+        }
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -20,11 +49,11 @@
     <header id="site-header" class="fixed-top">
         <div class="container">
             <nav class="navbar navbar-expand-lg stroke px-0">
-                <h1> <a class="navbar-brand" href="adminLogin.html">
+                <h1> <a class="navbar-brand" href="adminLogin.php">
                   STEMFern
               </a></h1>
                 <!-- if logo is image enable this   
-  <a class="navbar-brand" href="#index.html">
+  <a class="navbar-brand" href="#index.php">
       <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
   </a> -->
                 <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,16 +64,16 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item @@home__active">
-                            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item @@about__active">
-                            <a class="nav-link" href="about.html">About</a>
+                            <a class="nav-link" href="about.php">About</a>
                         </li>
                         <li class="nav-item @@services__active">
-                            <a class="nav-link" href="services.html">Services</a>
+                            <a class="nav-link" href="services.php">Services</a>
                         </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="contact.html">Contact</a>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="contact.php">Contact</a>
                         </li>
                         <!--/search-right-->
                         <div class="search-right">
@@ -53,7 +82,7 @@
                             <div id="search" class="pop-overlay">
                                 <div class="popup">
 
-                                    <form action="error.html" method="GET" class="search-box">
+                                    <form action="error.php" method="GET" class="search-box">
                                         <input type="search" placeholder="Enter Keyword" name="search" required="required" autofocus="">
                                         <button type="submit" class="btn"><span class="fa fa-search"
                                           aria-hidden="true"></span></button>
@@ -90,8 +119,8 @@
         <section class="w3l-breadcrumb">
             <div class="container">
                 <ul class="breadcrumbs-custom-path">
-                    <li><a href="index.html">Home</a></li>
-                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span> Electronic Board</li>
+                    <li><a href="index.php">Home</a></li>
+                    <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span> Contact</li>
                 </ul>
             </div>
         </section>
@@ -105,27 +134,72 @@
         </div>
     </div>
     <!-- banner bottom shape -->
-
-    <section class="w3l-index3" id="about">
-        <div class="midd-w3 py-5">
-            <div class="container py-lg-5 py-md-3">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="position-relative">
-                            <img src="assets/images/about1.jpg" alt="" class="radius-image-full img-fluid">
+    <!-- contact block -->
+    <!-- contact1 -->
+    <section class="w3l-contact-1 py-5" id="contact">
+        <div class="contacts-9 py-lg-5 py-md-4">
+            <div class="container">
+                <div class="d-grid contact-view">
+                    <div class="cont-details">
+                        <h4 class="title-small">Get in touch</h4>
+                        <h3 class="title-big mb-4">Contact Us</h3>
+                        <p class="mb-sm-5 mb-4"><br> We guarantee that you’ll be able to have any reply within 24 hours.</p>
+                        <div class="cont-top">
+                            <div class="cont-left text-center">
+                                <span class="fa fa-phone text-primary"></span>
+                            </div>
+                            <div class="cont-right">
+                                <h6>Phone number</h6>
+                                <p><a href="tel:+(21) 255 999 8888">+(1) 289 470 0478</a></p>
+                            </div>
+                        </div>
+                        <div class="cont-top margin-up">
+                            <div class="cont-left text-center">
+                                <span class="fa fa-envelope-o text-primary"></span>
+                            </div>
+                            <div class="cont-right">
+                                <h6>Send Email</h6>
+                                <p><a href="mailto:support@allianztech.ca" class="mail">support@allianztech.ca</a></p>
+                            </div>
+                        </div>
+                        <div class="cont-top margin-up">
+                            <div class="cont-left text-center">
+                                <span class="fa fa-map-marker text-primary"></span>
+                            </div>
+                            <div class="cont-right">
+                                <h6>Company Address</h6>
+                                <p class="pr-lg-5">273, Manchester Drive, Newmarket, Ontario, Canada.</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 mt-lg-0 mt-md-5 mt-4 align-self">
-                        <h3 class="title-big mx-0">Electronic Boards Development </h3>
-                        <p class="mt-md-4 mt-3">STEMFern Services ranges from consultation to finding a solution, feasibility study, redesign, design, debugging, and reverse-engineering of Electronic Boards. Under Electronic Boards Development, click on Read More to check details
-                            about the services, the services are explained detailly with their technical team member details.
-                        </p>
-                        <!-- <p class="mt-3">Passion which is indispensable for learning and teaching facilitates learning thorough desire and enthusiasm it creates.</p> -->
+                    <div class="map-content-9">
+                        <h5 class="mb-sm-4 mb-3">Drop us a line</h5>
+                        <form action="contact.php" method="post">
+                            <div class="twice-two">
+                                <input type="text" class="form-control" name="cName" id="w3lName" placeholder="Name" required="">
+                                <input type="email" class="form-control" name="cEmail" id="w3lSender" placeholder="Email" required="">
+                            </div>
+                            <div class="twice">
+                                <input type="text" class="form-control" name="cSubject" id="w3lSubject" placeholder="Subject" required="">
+                            </div>
+                            <textarea name="cMessage" class="form-control" id="w3lMessage" placeholder="Message" required=""></textarea>
+                            <div class="text-right">
+                                <button type="submit" name="btn" class="btn btn-primary btn-style mt-4">Send Message</button>
+                            </div>
+                        </form>
+                        <h1  style="font-size:20px;margin:10px;text-align:center"><?php echo $result ;?></h1>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <!-- /contact1 -->
+    <div class="map-iframe">
+
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2866.82469331361!2d-79.4732582844888!3d44.06632847910937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882ace0087dab497%3A0x665bee641e3c0d32!2s273%20Manchester%20Dr%2C%20Newmarket%2C%20ON%20L3Y%206J4%2C%20Canada!5e0!3m2!1sen!2sin!4v1649180394682!5m2!1sen!2sin"
+            width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <!-- //contact block -->
 
 
     <!-- copyright -->
