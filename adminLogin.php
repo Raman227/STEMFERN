@@ -30,7 +30,7 @@
                         echo "There was a problem logging in ".$e->getMessage(); exit;
                     }
                 }else{
-                    $result="username and password not matched. Try Again  "."$userName";
+                    $result="username and  password not matched. Try Again  "."$userName";
                 }
 			}
 
